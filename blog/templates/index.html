@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Login — Chiroyli Dizayn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+  <main class="phone" id="phone">
+    <div class="statusbar" id="statusbar">
+      <input type="checkbox" id="check"  style="display: none;" onclick="kun()">
+        <label for="check" id="check_wrap">
+            <div class="circle">
+                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" >
+                    <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+                </svg>
+                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" >
+                    <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" />
+                </svg>
+            </div>
+        </label>
+    
+    <div class="content">
+      <div class="logo-wrap">
+        <div class="logo" aria-label="Logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Заливка круга без обводки -->
+  <circle class="circle-bg" cx="60" cy="60" r="60"/>
+  <!-- Узлы нейросети -->
+  <circle cx="45" cy="50" r="6" fill="#ff6a00"/>
+  <circle cx="75" cy="50" r="6" fill="#ff6a00"/>
+  <circle cx="60" cy="70" r="6" fill="#ff6a00"/>
+  <!-- Соединения -->
+  <line x1="45" y1="50" x2="75" y2="50" stroke="#ff6a00" stroke-width="2"/>
+  <line x1="45" y1="50" x2="60" y2="70" stroke="#ff6a00" stroke-width="2"/>
+  <line x1="75" y1="50" x2="60" y2="70" stroke="#ff6a00" stroke-width="2"/>
+</svg>
+</div>
+        <div class="brand" style="color: #ff6a00;">N<span id="logoEura">EURA</span></div>
+      </div>
+
+      <form action="{% url "index" %}" method="post" autocomplete="on">
+        {% csrf_token %}
+
+        <div class="stack">
+          <label class="muted" for="login">Login</label>
+          <div class="field">
+            <svg width="18" height="18" viewBox="0 0 24 24" ...></svg>
+            <input id="login" name="username" type="text" placeholder="Foydalanuvchi nomi" required />
+          </div>
+        </div>
+      
+        <div class="stack">
+          <label class="muted" for="parol">Parol</label>
+          <div class="field">
+            <svg width="18" height="18" viewBox="0 0 24 24" ...></svg>
+            <input id="parol" name="password" type="password" placeholder="" required />
+            {% comment %} <input id="parol" name="password" type="password" placeholder="••••••••" required /> {% endcomment %}
+          </div>
+        </div>
+      
+        <button class="btn" type="submit" id="btn">Kirish</button>
+      
+        {% if error %}
+          <p style="color:red;">{{ error }}</p>
+        {% endif %}
+      </form>
+
+      
+
+      <div class="pulse"></div>
+      <div class="copy">copyright © 2025 NEURA Team</div>
+    </div>
+  </main>
+
+  <!--  -->
+  <script>
+    let btn = document.getElementById("btn");
+    let phone = document.getElementById("phone");
+    let logoStyle = document.getElementById("logoEura");
+    let active = 0;
+    function kun(){
+        phone.classList.toggle("ddd");
+        if(active == 0){
+        phone.style.transition = "1s"
+        logoStyle.setAttribute("style", "color:#fff;");
+        btn.style.background = "linear-gradient(135deg, #ff6a00, #ff8c42, #ffd700)";
+        btn.style.boxShadow = " 1px 1px 15px #ff6a00";
+        active = 1;
+        }else{
+          logoStyle.setAttribute("style", "color:#0f172a;");
+          btn.style.boxShadow = "0 16px 32px rgba(124,58,237,.45)";
+          btn.style.background= "linear-gradient(135deg, var(--brand), var(--brand-2))";
+          active = 0;
+        }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Frontend Guruhi — Ustoz App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0ea5ea;
+      --bg2:#7c3aed;
+      --bg3:#0f172a;
+      --text:#eef2ff;
+      --muted:#cbd5e1;
+      --card:#0b1224bb;
+      --stroke:#ffffff22;
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --accent:#06b6d4;
+      --radius: 24px;
+      --shadow: 0 12px 30px rgba(2,8,23,.45);
+    }
+
+    *{box-sizing:border-box}
+    html,body{min-height:100%}
+    body{
+      margin:0; color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      background:
+        radial-gradient(900px 800px at 85% 10%, rgba(14,165,234,.35), transparent 60%),
+        radial-gradient(900px 800px at 10% 90%, rgba(124,58,237,.35), transparent 60%),
+        linear-gradient(180deg, var(--bg3) 0%, #070c1a 100%);
+      display:grid; place-items:center; padding:18px;
+    }
+
+    .phone{ width:min(410px, 94vw); height:min(800px, 178vw); border-radius:36px; overflow:hidden; border:1px solid var(--stroke); box-shadow:var(--shadow); background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); backdrop-filter: blur(8px); position:relative;}
+
+    .topbar{ display:flex; align-items:center; justify-content:space-between; padding:14px 16px; background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.04)); border-bottom:1px solid var(--stroke); }
+    .group-title{ font-weight:700; font-size:16px; }
+    .add-btn{ padding:8px 14px; border-radius:12px; font-size:14px; font-weight:600; cursor:pointer; border:1px solid var(--stroke); background:linear-gradient(135deg,#22d3ee,#3b82f6); color:#0a0f1f; box-shadow:0 6px 14px rgba(59,130,246,.35); transition:.2s }
+    .add-btn:hover{ transform:translateY(-2px); background:linear-gradient(135deg,#38bdf8,#6366f1) }
+
+    .screen{ height: calc(100% - 60px); overflow:auto; padding:16px; display:flex; flex-direction:column; gap:14px; }
+
+    /* O‘quvchi kartalari */
+    .student-card{
+      padding:12px 14px; border-radius:16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      display:flex; justify-content:space-between; align-items:center;
+      transition:.2s;
+    }
+    .student-card:hover{ transform:translateY(-2px); background:rgba(255,255,255,.12)}
+    .student-info{ display:flex; flex-direction:column; }
+    .student-name{ font-weight:600; }
+    .student-id{ font-size:12px; color:var(--muted); }
+
+    .ghost{ height:70px }
+  </style>
+</head>
+<body>
+  <main class="phone" role="main" aria-label="Frontend Guruhi">
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="group-title">Frontend Guruhi</div>
+      <button class="add-btn">➕ O‘quvchi qo‘shish</button>
+    </div>
+
+    <!-- O‘quvchilar ro‘yxati -->
+    <div class="screen">
+      <section class="student-card">
+        <div class="student-info">
+          <div class="student-name">Aliyev Bekzod</div>
+          <div class="student-id">ID: #ST-1001</div>
+        </div>
+        <div><a href="./students/index.html">👨‍💻</a></div>
+      </section>
+
+      <section class="student-card">
+        <div class="student-info">
+          <div class="student-name">Karimova Dilnoza</div>
+          <div class="student-id">ID: #ST-1002</div>
+        </div>
+        <div>👩‍💻</div>
+      </section>
+
+      <section class="student-card">
+        <div class="student-info">
+          <div class="student-name">Ismoilov Shaxzod</div>
+          <div class="student-id">ID: #ST-1003</div>
+        </div>
+        <div>👨‍💻</div>
+      </section>
+
+      <div class="ghost"></div>
+    </div>
+  </main>
+</body>
+</html>

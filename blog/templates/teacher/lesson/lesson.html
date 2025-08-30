@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lessons — Ustoz App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0ea5ea;
+      --bg2:#7c3aed;
+      --bg3:#0f172a;
+      --text:#eef2ff;
+      --muted:#cbd5e1;
+      --stroke:#ffffff22;
+      --accent:#06b6d4;
+      --radius: 24px;
+      --shadow: 0 12px 30px rgba(2,8,23,.45);
+    }
+
+    *{box-sizing:border-box}
+    html,body{min-height:100%}
+    body{
+      margin:0; color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      background:
+        radial-gradient(900px 800px at 85% 10%, rgba(14,165,234,.35), transparent 60%),
+        radial-gradient(900px 800px at 10% 90%, rgba(124,58,237,.35), transparent 60%),
+        linear-gradient(180deg, var(--bg3) 0%, #070c1a 100%);
+      display:grid; place-items:center; padding:18px;
+    }
+
+    .phone{ 
+      width:min(410px, 94vw); 
+      height:min(800px, 178vw); 
+      border-radius:36px; 
+      overflow:hidden; 
+      border:1px solid var(--stroke); 
+      box-shadow:var(--shadow); 
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); 
+      backdrop-filter: blur(8px); 
+      position:relative;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .header{
+      text-align:center;
+      font-family:"Plus Jakarta Sans", Inter, sans-serif;
+      font-size:20px;
+      font-weight:800;
+      padding:16px;
+      border-bottom:1px solid var(--stroke);
+      background:rgba(255,255,255,.05);
+    }
+
+    .screen{ flex:1; overflow:auto; padding:16px; display:flex; flex-direction:column; gap:18px; }
+
+    .course-card{
+      padding:20px; 
+      border-radius:20px; 
+      border:1px solid var(--stroke); 
+      background:linear-gradient(135deg, rgba(124,58,237,.25), rgba(14,165,234,.25)); 
+      box-shadow:0 10px 24px rgba(14,165,234,.25); 
+      min-height:100px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:6px;
+      transition:transform .2s;
+    }
+    .course-card:hover{
+      transform:translateY(-4px) scale(1.02);
+    }
+    .course-title{ font-size:18px; font-weight:700; }
+    .course-info{ font-size:13px; color:var(--muted); }
+
+    .dock{ position:absolute; left:10px; right:10px; bottom:10px; height:64px; border-radius:20px; background: rgba(10,16,31,.7); border:1px solid var(--stroke); backdrop-filter: blur(8px); display:flex; justify-content:space-around; align-items:center; box-shadow: var(--shadow) }
+    .dock .i{ width:44px; height:44px; border-radius:14px; display:grid; place-items:center; cursor:pointer; border:1px solid var(--stroke); background:rgba(255,255,255,.07); transition:.2s}
+    .dock .i.active{ background: linear-gradient(135deg, rgba(14,165,234,.35), rgba(124,58,237,.30)); box-shadow:0 8px 18px rgba(14,165,234,.35) }
+    .dock .i:hover{ transform: translateY(-2px)}
+  </style>
+</head>
+<body>
+  <main class="phone" role="main" aria-label="Lessons Page">
+    
+    <!-- Header -->
+    <div class="header">📘 Lessons</div>
+
+    <!-- Scrollable screen -->
+    <div class="screen">
+
+      <section class="course-card">
+        <div class="course-title">Foundation</div>
+        <div class="course-info">6 modul | 72 ta dars</div>
+        <a href="./lesson2.html">go</a>
+      </section>
+
+      <section class="course-card">
+        <div class="course-title">Frontend</div>
+        <div class="course-info">8 modul | 45 ta dars</div>
+      </section>
+
+      <section class="course-card">
+        <div class="course-title">Backend</div>
+        <div class="course-info">7 modul | 35 ta dars</div>
+      </section>
+
+    </div>
+
+    <!-- Bottom dock nav -->
+    <nav class="dock" aria-label="Asosiy navigatsiya">
+      <div class="i" title="Home" style="position: relative;">
+        <a href="{% url "teacher_home" worker.id %}" style="position: absolute; width: 100%; height: 100%;"></a>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7"/><path d="M9 22V12h6v10"/></svg>
+      </div>
+      <div class="i active" title="Darslar" style="position: relative;">
+        <a href="{% url "teacher_lessons" %}" style="position: absolute; width: 100%; height: 100%;"></a>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V4.5A2.5 2.5 0 0 1 6.5 2h11A2.5 2.5 0 0 1 20 4.5v15"/><path d="M4 7h16M8 2v4"/></svg>
+      </div>
+      <div class="i" title="Topshiriqlar">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div class="i" title="Reyting" style="position: relative;">
+        <a href="{% url "teacher_reyting" %}" style="position: absolute; width: 100%; height: 100%;"></a>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9 17 13.5 18.5 21 12 17.5 5.5 21 7 13.5 2 9 9 8.5 12 2"/></svg>
+      </div>
+      <div class="i" title="Sozlamalar" style="position: relative;">
+        <a href="{% url "teacher_setting" %}" style="position: absolute; width: 100%; height: 100%;"></a>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 3.6 15a1.65 1.65 0 0 0-1.51-1H2a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 3.6 8a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 8 3.6a1.65 1.65 0 0 0 1-1.51V2a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 20.4 8c.36.5.57 1.1.6 1.72V10c0 .34-.04.67-.1 1a1.65 1.65 0 0 0 0 1c.06.33.1.66.1 1v.28c-.03.62-.24 1.22-.6 1.72z"></path></svg>
+      </div>
+    </nav>
+  </main>
+</body>
+</html>
